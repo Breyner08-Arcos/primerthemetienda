@@ -11,7 +11,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: var(--store-blue);
+  background: #d4ff24;
   color: var(--store-black);
   text-align: center;
   font-weight: 600;
@@ -48,7 +48,7 @@
   .swiper-slide:not(:first-child) {
   display: none;
 }
-.top-banner button {
+/* .top-banner button {
   position: absolute;
   z-index: 2;
   inset-block-start: 50%;
@@ -60,7 +60,7 @@
   background: var(--store-blue);
   color: inherit;
   cursor: pointer;
-}
+} */
 .top-banner [hidden] {
   display: none;
 }
