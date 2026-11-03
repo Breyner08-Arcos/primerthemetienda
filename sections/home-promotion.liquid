@@ -7,6 +7,68 @@
   </div>
   <div class="details_promotion"><span>HASTA</span><strong>45%</strong><span>DE DESCUENTO</span></div>
 </section>
+<style>
+.content_promotion > p {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  margin: 0 0 26px;
+}
+.home_promotion .button {
+  gap: 30px;
+  border-radius: 100px;
+  background: #d4ff24;
+  color: #030407;
+  border: 1px solid #d4ff24;
+  font-weight: 600;
+  display: flex;
+}
+.home_promotion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: clamp(40px, 7vw, 112px) clamp(24px, 6vw, 96px);
+  background: #1558c9;
+  color: #fff;
+}
+.content_promotion {
+  max-width: 550px;
+}
+.content_promotion h2 {
+  color: inherit;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px;
+}
+.content_promotion .button {
+  margin-top: 24px;
+}
+.details_promotion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #d4ff24;
+}
+.details_promotion strong {
+  font-size: clamp(90px, 15vw, 220px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  font-weight: 500;
+}
+.details_promotion span {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
+@media (max-width: 749px) {
+.home_promotion {
+    grid-template-columns: 1fr;
+  }
+.details_promotion {
+    align-items: flex-start;
+  }
+}
+</style>
 {% schema %}
 {
   "name":"Promoción de invierno",

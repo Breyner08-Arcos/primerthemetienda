@@ -118,7 +118,7 @@
         >
         {% render 'add-to-cart-button',
           add_to_cart_text: add_to_cart_text,
-          class: 'quick-add__button quick-add__button--add add-to-cart-button',
+          class: 'btn_add_to__cart quick-add__button quick-add__button--add add-to-cart-button',
           can_add_to_cart: can_add_to_cart,
           show_icon: true,
           product: product
@@ -129,7 +129,7 @@
 
   {% if render_choose %}
     <button
-      class="button quick-add__button quick-add__button--choose add-to-cart-button"
+      class="button btn_add_to__cart quick-add__button quick-add__button--choose add-to-cart-button"
       name="add"
       on:click="quick-add-component/handleClick"
     >

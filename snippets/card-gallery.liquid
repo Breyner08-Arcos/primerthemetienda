@@ -68,14 +68,16 @@
   endif
 %}
 
+{% comment %}Only the image ratio depends on product data; appearance lives in the card stylesheet.{% endcomment %}
+{% style %}
+  .card-gallery-{{ block.id }}[data-product-id="{{ product.id }}"] {
+    --gallery-aspect-ratio: {{ ratio }};
+  }
+{% endstyle %}
+
 <div
   ref="cardGallery"
-  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style{% if has_badges %} card-gallery--badge-{{ badge_position }}{% endif %}"
-  style="
-    {% render 'border-override', settings: block_settings %}
-    {% render 'spacing-style', settings: block_settings %}
-    --gallery-aspect-ratio: {{ ratio }};
-  "
+  class="product-card__media card-gallery card-gallery-{{ block.id }}{% if has_badges %} card-gallery--badge-{{ badge_position }}{% endif %}"
   data-product-id="{{ product.id }}"
   {% if settings.show_second_image_on_hover and product.media.size > 1 %}
     on:pointerenter="/previewImage"

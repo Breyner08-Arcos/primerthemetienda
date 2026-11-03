@@ -1,0 +1,14 @@
+{%- doc -%}
+  Traduce los nombres del menú inicial de Shopify; conserva los nombres personalizados.
+  @param {string} title - Nombre del enlace
+{%- enddoc -%}
+{%- case title -%}
+  {%- when 'Home' -%}Inicio
+  {%- when 'Catalog', 'Catalogue' -%}Catálogo
+  {%- when 'Contact', 'Contact us' -%}Contacto
+  {%- when 'Search' -%}Buscar
+  {%- when 'Products' -%}Productos
+  {%- when 'Collections' -%}Colecciones
+  {%- when 'About us' -%}Quiénes somos
+  {%- else -%}{{- title | escape -}}
+{%- endcase -%}

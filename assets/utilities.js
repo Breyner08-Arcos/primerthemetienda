@@ -628,7 +628,8 @@ function getCardsToAnimate(grid, cards) {
   const cardSample = itemSample.querySelector('product-card');
   const gridStyle = getComputedStyle(grid);
 
-  const galleryAspectRatio = cardSample?.refs?.cardGallery?.style.getPropertyValue('--gallery-aspect-ratio') || '';
+  const cardGallery = cardSample?.refs?.cardGallery;
+  const galleryAspectRatio = cardGallery ? getComputedStyle(cardGallery).getPropertyValue('--gallery-aspect-ratio') : '';
   let aspectRatio = parseFloat(galleryAspectRatio) || 0.5;
   if (galleryAspectRatio?.includes('/')) {
     const [width = '1', height = '2'] = galleryAspectRatio.split('/');

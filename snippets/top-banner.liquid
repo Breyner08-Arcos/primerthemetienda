@@ -19,3 +19,59 @@
     </div>
   {% endcomment %}
 </store-promotions>
+
+<style>
+.top-banner {
+  display: block;
+
+  flex-shrink: 0;
+  min-height: 45px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: #d4ff24;
+  color: #030407;
+  text-align: center;
+  font-weight: 600;
+}
+.top-banner .swiper-container {
+  width: 100%;
+  overflow: hidden;
+}
+.top-banner .swiper-wrapper {
+  align-items: stretch;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.top-banner .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 45px;
+  padding: 10px 52px;
+}
+.top-banner .swiper-slide > p {
+  margin: 0;
+  color: inherit;
+  font-size: 12px;
+}
+.top-banner a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+.top-banner
+  .swiper-container:not(.swiper-initialized)
+  .swiper-slide:not(:first-child) {
+  display: none;
+}
+.top-banner [hidden] {
+  display: none;
+}
+@media (min-width: 767px) {
+.top-banner .swiper-slide > p {
+    font-size: 14px;
+  }
+}
+</style>

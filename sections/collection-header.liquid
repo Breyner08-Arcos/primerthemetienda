@@ -1,0 +1,37 @@
+<header class="collection_header">
+  {% assign heading = section.settings.title | default: collection.title %}
+  {% if section.settings.title == blank and collection.handle == 'all' %}{% assign heading = 'Todos los productos' %}{% endif %}
+  <h1>{{ heading | escape }}</h1>
+  {% if section.settings.show_description and collection.description != blank %}<div class="collection_description">{{ collection.description }}</div>{% endif %}
+</header>
+<style>
+  .collection_header { max-width: 1440px; margin: auto; padding: 48px 32px 16px; color: #f5f7fa; }
+  .collection_header h1 { margin: 0; color: #f5f7fa; font-size: clamp(36px, 6vw, 72px); line-height: 1.1; }
+  .collection_description { max-width: 720px; margin-top: 20px; color: #c7c9ce; line-height: 1.6; }
+  @media (max-width: 599px) { .collection_header { padding: 32px 16px 8px; } }
+</style>
+
+{% schema %}
+{
+  "name": "Encabezado de colección",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título personalizado",
+      "info": "Déjalo vacío para usar el nombre de la colección."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Mostrar descripción",
+      "default": true
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "collection"
+    ]
+  }
+}
+{% endschema %}

@@ -24,9 +24,140 @@
     </div>
   </div>
 </section>
+<style>
+.home_banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(800px, 85svh);
+  background: #030407;
+  color: #f5f7fa;
+}
+.media_banner {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(ellipse at 83% 40%, #1558c966, transparent 57%);
+}
+.media_banner img,
+.media_banner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home_banner:has(.media_banner img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #030407ed, #03040788 38%, transparent 72%);
+}
+.content_banner {
+  width: min(1400px, 100%);
+  margin: auto;
+  padding: clamp(40px, 6vw, 96px) clamp(24px, 6vw, 96px);
+  pointer-events: none;
+}
+.content_banner a {
+  pointer-events: auto;
+}
+.content_banner > p {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  margin: 0 0 26px;
+}
+.title_banner {
+  margin: 0;
+  max-width: 650px;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  font-size: clamp(60px, 8.5vw, 132px);
+}
+.title_banner span {
+  display: block;
+}
+.title_banner span:nth-child(1) {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  color: #d4ff24;
+}
+.title_banner span:nth-child(2) {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #d4ff24;
+}
+.title_banner span:nth-child(3) {
+  font-family: 'Manrope', Arial, sans-serif;
+  font-weight: 300;
+  color: #83aaff;
+  font-size: 0.78em;
+  letter-spacing: -0.065em;
+}
+.description_banner {
+  max-width: 330px;
+  margin-top: 28px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.actions_banner {
+  margin-top: 28px;
+}
+.home_banner .button {
+  gap: 30px;
+  border-radius: 100px;
+  background: #d4ff24;
+  color: #030407;
+  border: 1px solid #d4ff24;
+  font-weight: 600;
+  display: flex;
+}
+.details_banner {
+  display: flex;
+  gap: 24px;
+  margin-top: 48px;
+  max-width: 480px;
+}
+.details_banner:empty {
+  display: none;
+}
+.details_banner > div + div {
+  border-left: 1px solid #ffffff40;
+  padding-left: 24px;
+}
+.details_banner strong {
+  font-size: 20px;
+  font-weight: 400;
+}
+.details_banner p {
+  margin: 6px 0 0;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+@media (max-width: 749px) {
+.home_banner {
+    min-height: 650px;
+  }
+.home_banner:has(.media_banner img)::after {
+    background:
+      linear-gradient(90deg, #030407dd, #03040755),
+      linear-gradient(0deg, #030407, transparent 60%);
+  }
+.media_banner img {
+    object-position: 65% center;
+  }
+.home_banner:has(video) .media_banner {
+    position: relative;
+    height: 260px;
+  }
+.home_banner:has(video) {
+    min-height: auto;
+  }
+}
+</style>
 {% schema %}
 {
-  "name": "Home banner",
+  "name": "Banner principal",
   "tag": "section",
   "settings": [
     {"type":"select","id":"media_type","label":"Tipo de fondo","options":[{"value":"image","label":"Imagen"},{"value":"video","label":"Video"}],"default":"image"},
@@ -41,6 +172,6 @@
     {"type":"url","id":"button_link","label":"Enlace del botón"}
   ],
   "blocks":[{"type":"detail","name":"Detalle","limit":3,"settings":[{"type":"text","id":"title","label":"Título"},{"type":"text","id":"description","label":"Descripción"}]}],
-  "presets":[{"name":"Home banner"}]
+  "presets":[{"name":"Banner principal"}]
 }
 {% endschema %}

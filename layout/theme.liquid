@@ -3,7 +3,7 @@
   {% if request.design_mode %}
     class="shopify-design-mode"
   {% endif %}
-  lang="{{ request.locale.iso_code }}"
+  lang="{% if request.locale.iso_code == 'en' %}es{% else %}{{ request.locale.iso_code }}{% endif %}"
   dir="{{ request.locale.direction | default: 'ltr' }}"
 >
   <head>

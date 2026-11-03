@@ -1,0 +1,37 @@
+{% comment %}Los estilos de estas clases se definen en el <style> de cada sección que incluye este snippet.{% endcomment %}
+{% # theme-check-disable ValidScopedCSSClass %}
+{% comment %}Tarjeta compartida. Sus estilos están dentro de las secciones que la muestran.{% endcomment %}
+<article class="card_product">
+  <a class="product_image" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 900 | image_tag: widths: '240, 480, 720, 900', sizes: '(min-width: 990px) 25vw, 50vw', loading: 'lazy' }}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {% endif %}
+    {% unless product.available %}<span class="product_badge">Agotado</span>{% else %}
+      {% if product.compare_at_price > product.price %}<span class="product_badge">Oferta</span>{% endif %}
+    {% endunless %}
+  </a>
+  <div class="product_content">
+    <h3 class="product_title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <div class="product_price">
+      {% if product.price_varies %}<span>Desde</span>{% endif %}
+      <strong>{{ product.price | money }}</strong>
+      {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}
+    </div>
+    {% if product.available %}
+      {% if product.variants.size == 1 and product.selling_plan_groups.size == 0 %}
+        {% assign card_form_id = 'catalog-form-' | append: section_id | append: '-' | append: product.id %}
+        {% form 'product', product, id: card_form_id, class: 'product_form' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="{{ product.selected_or_first_available_variant.quantity_rule.min | default: 1 }}">
+          <button class="btn_add_to__cart" type="submit">Agregar al carrito</button>
+        {% endform %}
+      {% else %}
+        <a class="btn_add_to__cart" href="{{ product.url }}">Elegir opciones</a>
+      {% endif %}
+    {% else %}<button class="btn_add_to__cart" type="button" disabled>Agotado</button>{% endif %}
+  </div>
+</article>
+
+{% # theme-check-enable ValidScopedCSSClass %}
