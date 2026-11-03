@@ -1,0 +1,46 @@
+<section class="home_banner" aria-labelledby="title-banner-{{ section.id }}">
+  <div class="media_banner">
+    {% if section.settings.media_type == 'video' and section.settings.video != blank %}
+      {{ section.settings.video | video_tag: image_size: '2400x', autoplay: false, loop: true, muted: true, controls: true, playsinline: true, preload: 'metadata' }}
+    {% elsif section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2600 | image_tag: widths: '750, 1100, 1500, 2000, 2600', sizes: '100vw', loading: 'eager', fetchpriority: 'high' }}
+    {% endif %}
+  </div>
+  <div class="content_banner">
+    <p>{{ section.settings.intro | escape }}</p>
+    <h1 class="title_banner" id="title-banner-{{ section.id }}">
+      <span>{{ section.settings.line_1 | escape }}</span>
+      <span>{{ section.settings.line_2 | escape }}</span>
+      <span>{{ section.settings.line_3 | escape }}</span>
+    </h1>
+    <div class="description_banner">{{ section.settings.description }}</div>
+    {% if section.settings.button_label != blank %}
+      <div class="actions_banner"><a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a></div>
+    {% endif %}
+    <div class="details_banner">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}><strong>{{ block.settings.title | escape }}</strong><p>{{ block.settings.description | escape }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Home banner",
+  "tag": "section",
+  "settings": [
+    {"type":"select","id":"media_type","label":"Tipo de fondo","options":[{"value":"image","label":"Imagen"},{"value":"video","label":"Video"}],"default":"image"},
+    {"type":"image_picker","id":"image","label":"Imagen de fondo","info":"Usa una composición con el producto a la derecha y espacio libre a la izquierda."},
+    {"type":"video","id":"video","label":"Video de fondo","info":"Reproducción con controles nativos, sin JavaScript en el banner."},
+    {"type":"text","id":"intro","label":"Texto superior","default":"DISEÑO QUE VA CONTIGO"},
+    {"type":"text","id":"line_1","label":"Título: línea 1","default":"Siente"},
+    {"type":"text","id":"line_2","label":"Título: línea 2","default":"cada"},
+    {"type":"text","id":"line_3","label":"Título: línea 3","default":"momento."},
+    {"type":"richtext","id":"description","label":"Descripción","default":"<p>Tus favoritos, una nueva energía.<br>Descubre lo que va con tu ritmo.</p>"},
+    {"type":"text","id":"button_label","label":"Botón","default":"Explorar ahora"},
+    {"type":"url","id":"button_link","label":"Enlace del botón"}
+  ],
+  "blocks":[{"type":"detail","name":"Detalle","limit":3,"settings":[{"type":"text","id":"title","label":"Título"},{"type":"text","id":"description","label":"Descripción"}]}],
+  "presets":[{"name":"Home banner"}]
+}
+{% endschema %}

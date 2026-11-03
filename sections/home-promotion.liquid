@@ -1,0 +1,22 @@
+<section class="home_promotion" aria-labelledby="promotion-{{ section.id }}">
+  <div class="content_promotion">
+    <p>{{ section.settings.intro | escape }}</p>
+    <h2 id="promotion-{{ section.id }}">{{ section.settings.title | escape }}</h2>
+    <div>{{ section.settings.description }}</div>
+    <a class="button" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="details_promotion"><span>HASTA</span><strong>45%</strong><span>DE DESCUENTO</span></div>
+</section>
+{% schema %}
+{
+  "name":"Promoción de invierno",
+  "settings":[
+    {"type":"text","id":"intro","label":"Texto superior","default":"TEMPORADA DE INVIERNO"},
+    {"type":"text","id":"title","label":"Título","default":"Dale un giro a tus días."},
+    {"type":"richtext","id":"description","label":"Descripción","default":"<p>Descubre tus próximos favoritos con descuentos de invierno de hasta un 45%.</p>"},
+    {"type":"text","id":"button_label","label":"Botón","default":"Descubrir la colección"},
+    {"type":"url","id":"link","label":"Enlace"}
+  ],
+  "presets":[{"name":"Promoción de invierno"}]
+}
+{% endschema %}
